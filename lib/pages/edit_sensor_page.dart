@@ -258,7 +258,10 @@ class _EditSensorState extends State<EditSensor> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 25.0),
             child: GestureDetector(
-              onTap: editSensor,
+              onTap: () {
+                Navigator.pop(context);
+                editSensor();
+              },
               child: Container(
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
