@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moncey2/pages/edit_sensor_page.dart';
+import 'package:moncey2/pages/history_page.dart';
 import 'package:quickalert/quickalert.dart';
 
 class SensorDetails extends StatefulWidget {
@@ -145,7 +146,13 @@ class _SensorDetails extends State<SensorDetails> {
                           width: 185,
                           child: ElevatedButton(
                             onPressed: () {
-                              return null;
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HistorPage(
+                                          historyID: widget.sensoreId,
+                                        )),
+                              );
                             },
                             child: Text('History'),
                             style: ElevatedButton.styleFrom(
