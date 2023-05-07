@@ -144,8 +144,12 @@ class _SensorDetails extends State<SensorDetails> {
                         SizedBox(
                           width: 185,
                           child: ElevatedButton(
-                            onPressed: null,
+                            onPressed: () {
+                              return null;
+                            },
                             child: Text('History'),
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.lightBlue),
                           ),
                         ),
                         Row(
