@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "220910950218",
+    "project_id": "moncy2-fa8a4",
+    "storage_bucket": "moncy2-fa8a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220910950218:android:9e77da1ccac214868793b3",
+        "android_client_info": {
+          "package_name": "com.example.moncey2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "220910950218-k2m4i8p617jkhr08k92qq20gid0hrttd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUjNePxx4v7oZQ1P2ZoSM8o7ztDncTY84"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "220910950218-k2m4i8p617jkhr08k92qq20gid0hrttd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
