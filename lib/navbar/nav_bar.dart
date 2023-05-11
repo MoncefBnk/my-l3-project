@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:moncey2/navbar/account_page.dart';
 import 'package:moncey2/navbar/alerts_page.dart';
 import 'package:moncey2/navbar/favorits_page.dart';
+import 'package:moncey2/pages/support_page.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -109,7 +110,12 @@ class _NavBarState extends State<NavBar> {
             leading: Icon(Icons.support),
             title: Text('support'),
             onTap: () {
-              null;
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SupportPage(),
+                ),
+              );
             },
           ),
           ListTile(
