@@ -80,7 +80,6 @@ class _SensorCardState extends State<SensorCard> {
             spacing: 1,
             onPressed: (context) {
               toggleFavorite(widget.sensorId);
-              Navigator.pop(context);
             },
             backgroundColor: Colors.red,
             foregroundColor: Colors.white,
