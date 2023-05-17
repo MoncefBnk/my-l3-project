@@ -44,6 +44,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final userDocRef =
+        FirebaseFirestore.instance.collection('users').doc(user.uid);
+    final sensorSubcollectionRef = userDocRef.collection('sensors');
+
     return Scaffold(
       //appbar menu
       drawer: NavBar(),
@@ -73,15 +77,25 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: ListView.builder(
-        padding: EdgeInsets.all(20),
-        itemCount: dataList.length,
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              SensorCard(sensorId: dataList[index]),
-              SizedBox(height: 20),
-            ],
+      body: StreamBuilder<QuerySnapshot>(
+        stream: sensorSubcollectionRef.snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return CircularProgressIndicator();
+          }
+          final sensorDocs = snapshot.data!.docs;
+          return ListView.builder(
+            padding: EdgeInsets.all(20),
+            itemCount: sensorDocs.length,
+            itemBuilder: (context, index) {
+              final sensorData = sensorDocs[index]['data'];
+              return Column(
+                children: [
+                  SensorCard(sensorId: sensorData),
+                  SizedBox(height: 20),
+                ],
+              );
+            },
           );
         },
       ),

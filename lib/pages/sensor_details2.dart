@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moncey2/pages/edit_sensor_page.dart';
@@ -31,6 +33,35 @@ class SensorDetails extends StatefulWidget {
 }
 
 class _SensorDetails extends State<SensorDetails> {
+  void deleteSensor() {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User? user = auth.currentUser;
+    final String? currentUserUID = user?.uid;
+
+    final sensorIdToDelete = widget.sensoreId;
+    final userDocRef =
+        FirebaseFirestore.instance.collection('users').doc(currentUserUID);
+    final sensorSubcollectionRef = userDocRef.collection('sensors');
+    final favoritesSubcollectionRef = userDocRef.collection('favorites');
+
+    sensorSubcollectionRef
+        .where('data', isEqualTo: sensorIdToDelete)
+        .get()
+        .then((querySnapshot) {
+      for (final doc in querySnapshot.docs) {
+        doc.reference.delete();
+      }
+    });
+    favoritesSubcollectionRef
+        .where('fav', isEqualTo: sensorIdToDelete)
+        .get()
+        .then((querySnapshot) {
+      for (final doc in querySnapshot.docs) {
+        doc.reference.delete();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -164,7 +195,53 @@ class _SensorDetails extends State<SensorDetails> {
                           children: [
                             ElevatedButton(
                               onPressed: () {
-                                return null;
+                                QuickAlert.show(
+                                  context: context,
+                                  type: QuickAlertType.custom,
+                                  barrierDismissible: true,
+                                  confirmBtnText: "Yes",
+                                  onConfirmBtnTap: () {
+                                    deleteSensor();
+                                    Navigator.pop(context);
+                                    QuickAlert.show(
+                                      context: context,
+                                      type: QuickAlertType.success,
+                                      widget: Text(
+                                        'You have succesfully deleted the sensor',
+                                        style: GoogleFonts.cairo(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      confirmBtnText: "Dissmiss",
+                                      onConfirmBtnTap: () {
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
+                                      confirmBtnTextStyle: GoogleFonts.cairo(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      title: "",
+                                    );
+                                  },
+                                  confirmBtnTextStyle: GoogleFonts.cairo(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  cancelBtnText: "No",
+                                  confirmBtnColor: Colors.lightBlue,
+                                  cancelBtnTextStyle: GoogleFonts.cairo(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  showCancelBtn: true,
+                                  widget: Text(
+                                    "Do you really want to delete this sensor ?",
+                                    style: GoogleFonts.cairo(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                );
                               },
                               child: Icon(Icons.delete),
                               style: ElevatedButton.styleFrom(
