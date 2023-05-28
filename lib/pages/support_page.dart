@@ -69,7 +69,6 @@ class _SupportPageState extends State<SupportPage> {
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
-      backgroundColor: Colors.grey[200],
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -95,7 +94,7 @@ class _SupportPageState extends State<SupportPage> {
                   padding: EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
+                      color: Colors.white,
                       border: Border.all(color: Colors.lightBlue),
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -120,7 +119,7 @@ class _SupportPageState extends State<SupportPage> {
                   padding: EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
+                      color: Colors.white,
                       border: Border.all(color: Colors.lightBlue),
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -147,7 +146,7 @@ class _SupportPageState extends State<SupportPage> {
                     height: 200,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.grey[200],
+                        color: Colors.white,
                         border: Border.all(color: Colors.lightBlue),
                         borderRadius: BorderRadius.circular(12),
                       ),
