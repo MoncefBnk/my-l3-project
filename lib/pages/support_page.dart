@@ -102,7 +102,7 @@ class _SupportPageState extends State<SupportPage> {
                     child: Padding(
                       padding: EdgeInsets.only(left: 20.0),
                       child: TextField(
-                        controller: _subjectController,
+                        controller: _emailController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "Email",
@@ -127,7 +127,7 @@ class _SupportPageState extends State<SupportPage> {
                     child: Padding(
                       padding: EdgeInsets.only(left: 20.0),
                       child: TextField(
-                        controller: _emailController,
+                        controller: _subjectController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "Subject",
