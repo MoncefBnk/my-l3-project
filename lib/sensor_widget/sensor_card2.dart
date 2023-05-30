@@ -145,7 +145,7 @@ class _SensorCardState extends State<SensorCard> {
                   SizedBox(width: 20),
                   Icon(Icons.arrow_upward),
                   Text(
-                    " Alert low : " + sensoralertHigh + " °C",
+                    " Alert high : " + sensoralertHigh + " °C",
                     style: GoogleFonts.cairo(fontSize: 16),
                   ),
                 ],
